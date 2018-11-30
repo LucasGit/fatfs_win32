@@ -1,0 +1,28 @@
+---- Finfo Matches (32 in 2 files) ----
+Ff_user.c:FILINFO Finfo;
+Ff_user.c:		while (((res = f_readdir(&dir, &Finfo)) == FR_OK) && Finfo.fname[0]) {
+Ff_user.c:			if (Finfo.fattrib & AM_DIR) {
+Ff_user.c:				*(path+i) = '/'; strcpy(path+i+1, ts2ws(Finfo.fname));
+Ff_user.c:				AccSize += Finfo.fsize;
+Main.c:extern FILINFO Finfo;
+Main.c:					fr = f_readdir(&dir, &Finfo);
+Main.c:					if ((fr != FR_OK) || !Finfo.fname[0]) break;
+Main.c:					if (Finfo.fattrib & AM_DIR) {
+Main.c:						s1++; AccSize += Finfo.fsize;
+Main.c:							(Finfo.fattrib & AM_DIR) ? 'D' : '-',
+Main.c:							(Finfo.fattrib & AM_RDO) ? 'R' : '-',
+Main.c:							(Finfo.fattrib & AM_HID) ? 'H' : '-',
+Main.c:							(Finfo.fattrib & AM_SYS) ? 'S' : '-',
+Main.c:							(Finfo.fattrib & AM_ARC) ? 'A' : '-',
+Main.c:							(Finfo.fdate >> 9) + 1980, (Finfo.fdate >> 5) & 15, Finfo.fdate & 31,
+Main.c:							(Finfo.ftime >> 11), (Finfo.ftime >> 5) & 63, (QWORD)Finfo.fsize);
+Main.c:					zprintf("%-14s", ts2ws(Finfo.altname));
+Main.c:					zprintf("%s\n", ts2ws(Finfo.fname));
+Main.c:				fr = f_findfirst(&dir, &Finfo, ws2ts(ptr2), ws2ts(ptr));
+Main.c:				while (fr == FR_OK && Finfo.fname[0]) {
+Main.c:					zprintf("%-12s  ", ts2ws(Finfo.altname));
+Main.c:					zprintf("%s\n", ts2ws(Finfo.fname));
+Main.c:					fr = f_findnext(&dir, &Finfo);
+Main.c:				Finfo.fdate = (WORD)(((p1 - 1980) << 9) | ((p2 & 15) << 5) | (p3 & 31));
+Main.c:				Finfo.ftime = (WORD)(((p1 & 31) << 11) | ((p2 & 63) << 5) | ((p3 >> 1) & 31));
+Main.c:				put_rc(f_utime(ws2ts(ptr), &Finfo));
